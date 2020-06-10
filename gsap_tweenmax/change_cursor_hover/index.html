@@ -1,0 +1,116 @@
+<!--
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABLOPS                              DIGITAL
+PABLOPS      STAY CURIOUS            DIGITAL
+PABLOPS                              DIGITAL
+PABLOPS      PPPPPPPPPPPPPP          DIGITAL
+PABLOPS      P::::::::::::::P        DIGITAL
+PABLOPS      P::::PPPPPP:::::P       DIGITAL
+PABLOPS      P::::P     P:::::P      DIGITAL
+PABLOPS      P::::P     P:::::P      DIGITAL
+PABLOPS      P::::P     P:::::P      DIGITAL
+PABLOPS      P::::PPPPPP:::::P       DIGITAL
+PABLOPS      P:::::::::::::PP        DIGITAL
+PABLOPS      P::::PPPPPPPPP          DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      PPPPPP                  DIGITAL
+PABLOPS                              DIGITAL
+PABLOPS      PABLOPSDIGITAL.COM      DIGITAL
+PABLOPS                              DIGITAL
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test cursor hover GSAP</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div id="wrapper">
+        <div class="portfolio-item">
+            <div class="portfolio-thumb">
+                <img src="img/img-1.jpg" alt="" />
+            </div>
+        </div>
+    </div>
+
+
+    <!--Javascript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenMax.min.js"></script>
+
+    <script>
+
+        var cursor = $(".cursor");
+        var follower = $(".cursor-follower");
+
+        var posX = 0;
+        var posY = 0;
+        var mouseX = 0;
+        var mouseY = 0;
+
+        TweenMax.to({}, 0.016, {
+            repeat: -1,
+            onRepeat: function () {
+                posX += (mouseX - posX) / 9;
+                posY += (mouseY - posY) / 9;
+
+                //Circulo estela del cursor
+                TweenMax.set(follower, {
+                    css: {
+                        left: posX - 20,
+                        top: posY - 20
+                    }
+                });
+
+                //Centar con el cursor
+                TweenMax.set(cursor, {
+                    css: {
+                        left: mouseX,
+                        top: mouseY
+                    }
+                });
+            }
+        });
+
+        //Mover etiqueta con el puntero
+        $(document).on("mousemove", function (e) {
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+        });
+
+        //Activar etiqueta ver proyecto al pasar por encima
+        $(".portfolio-item img").on("mouseenter", function () {
+            cursor.addClass("active");
+            follower.addClass("active");
+        });
+
+        //Desactivar etiqueta ver proyecto al quitar
+        $(".portfolio-item img").on("mouseleave", function () {
+            cursor.removeClass("active");
+            follower.removeClass("active");
+        });
+
+
+    </script>
+
+</body>
+
+</html>
