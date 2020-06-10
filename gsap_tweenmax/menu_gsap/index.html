@@ -1,0 +1,166 @@
+<!--
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABLOPS                              DIGITAL
+PABLOPS      STAY CURIOUS            DIGITAL
+PABLOPS                              DIGITAL
+PABLOPS      PPPPPPPPPPPPPP          DIGITAL
+PABLOPS      P::::::::::::::P        DIGITAL
+PABLOPS      P::::PPPPPP:::::P       DIGITAL
+PABLOPS      P::::P     P:::::P      DIGITAL
+PABLOPS      P::::P     P:::::P      DIGITAL
+PABLOPS      P::::P     P:::::P      DIGITAL
+PABLOPS      P::::PPPPPP:::::P       DIGITAL
+PABLOPS      P:::::::::::::PP        DIGITAL
+PABLOPS      P::::PPPPPPPPP          DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      PPPPPP                  DIGITAL
+PABLOPS                              DIGITAL
+PABLOPS      PABLOPSDIGITAL.COM      DIGITAL
+PABLOPS                              DIGITAL
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="author" content="harrnish" />
+    <title>Test GSAP</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="navigation-wrapper">
+        <div class="project-preview-wrapper">
+            <div class="project-preview"></div>
+        </div>
+        <ul class="navigation-list">
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-1" href="#">
+                    <span data-text="Item01">Item01</span>
+                </a>
+            </li>
+            <div class="project-overlay"></div>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-2" href="#">
+                    <span data-text="Item02">Item02</span>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-3" href="#">
+                    <span data-text="Item03">Item03</span>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-4" href="#">
+                    <span data-text="Item04">Item04</span>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-5" href="#">
+                    <span data-text="Item05">Item05</span>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-6" href="#">
+                    <span data-text="Item06">Item06</span>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-7" href="#">
+                    <span data-text="Item07">Item07</span>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a class="navigation-link navigation-link-8" href="#">
+                    <span data-text="Item08">Item08</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="progressbar"></div>
+
+
+    <!--Javascript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenMax.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            TweenMax.set(".project-preview", { width: 0 });
+            var tl = new TimelineLite();
+            $(document)
+                .on("mouseover", ".navigation-item", function (evt) {
+                    tl = new TimelineLite();
+                    tl.to($(".project-preview"), 1, {
+                        width: "600px",
+                        ease: Expo.easeInOut
+                    });
+                })
+                .on("mouseout", ".navigation-item", function (evt) {
+                    tl = new TimelineLite();
+                    tl.to($(".project-preview"), 0.5, {
+                        width: 0,
+                        ease: Expo.easeInOut
+                    });
+                });
+        });
+
+        $(".navigation-link-1").hover(function () {
+            $(".project-preview").css({ "background-image": "url(img/img-1.jpg)" });
+        });
+
+        $(".navigation-link-2").hover(function () {
+            $(".project-preview").css({ "background-image": "url(img/img-2.jpg)" });
+        });
+
+        $(".navigation-link-3").hover(function () {
+            $(".project-preview").css({ "background-image": "url(img/img-3.jpg)" });
+        });
+
+        $(".navigation-link-4").hover(function () {
+            $(".project-preview").css({ "background-image": "url(img/img-4.jpg)" });
+        });
+
+        $(".navigation-link-5").hover(function () {
+            $(".project-preview").css({ "background-image": "url(img/img-5.jpg)" });
+        });
+
+        $(".navigation-link-6").hover(function () {
+            $(".project-preview").css({ "background-image": "url(img/img-6.jpg)" });
+        });
+
+        $(".navigation-link-7").hover(function () {
+            $(".project-preview").css({ "background-image": "url(img/img-7.jpg)" });
+        });
+
+        $(".navigation-link-8").hover(function () {
+            $(".project-preview").css({ "background-image": "url(img/img-8.jpg)" });
+        });
+
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop(),
+                dh = $(document).height(),
+                wh = $(window).height();
+            scrollPercent = (scroll / (dh - wh)) * 100;
+            $(".progressbar").css("height", scrollPercent + "%");
+        });
+
+    </script>
+
+</body>
+
+</html>
