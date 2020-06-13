@@ -1,0 +1,90 @@
+<!--
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABLOPS                              DIGITAL
+PABLOPS      STAY CURIOUS            DIGITAL
+PABLOPS                              DIGITAL
+PABLOPS      PPPPPPPPPPPPPP          DIGITAL
+PABLOPS      P::::::::::::::P        DIGITAL
+PABLOPS      P::::PPPPPP:::::P       DIGITAL
+PABLOPS      P::::P     P:::::P      DIGITAL
+PABLOPS      P::::P     P:::::P      DIGITAL
+PABLOPS      P::::P     P:::::P      DIGITAL
+PABLOPS      P::::PPPPPP:::::P       DIGITAL
+PABLOPS      P:::::::::::::PP        DIGITAL
+PABLOPS      P::::PPPPPPPPP          DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      P::::P                  DIGITAL
+PABLOPS      PPPPPP                  DIGITAL
+PABLOPS                              DIGITAL
+PABLOPS      PABLOPSDIGITAL.COM      DIGITAL
+PABLOPS                              DIGITAL
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+PABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBLOPS
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid text effect with Blotterjs library</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <div id="main"></div>
+
+
+    <!--Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/blotter.min.js"></script>
+    <script src="https://rawgit.com/bradley/Blotter/master/build/materials/liquidDistortMaterial.js"></script>
+
+    <script>
+
+        var container = document.getElementById("main");
+
+        var text = new Blotter.Text("pablopsdigital", {
+            family: "serif",
+            size: 150,
+            fill: "#fff",
+            paddingLfet: 80,
+            paddingRight: 80,
+            paddintTop: 80,
+            paddingBottom: 80
+        });
+
+        var material = new Blotter.LiquidDistortMaterial();
+        material.uniforms.uSpeed.value = 0.1;
+        material.uniforms.uVolatility.value = 0.07;
+        material.uniforms.uSeed.value = 2.02;
+
+        var blotter = new Blotter(material, {
+            texts: text
+        });
+
+        var scope = blotter.forText(text);
+        scope.appendTo(container);
+
+        //Move with mouse
+        document.onmousemove = moveIt;
+        function moveIt(event) {
+
+            material.uniforms.uVolatility.value = (event.clientX * 0.0001);
+            material.uniforms.uSeed.value = (event.clientX * 0.0001);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
